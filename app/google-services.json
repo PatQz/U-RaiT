@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1038868081393",
+    "firebase_url": "https://u-rait.firebaseio.com",
+    "project_id": "u-rait",
+    "storage_bucket": "u-rait.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1038868081393:android:9deab4e4959d3d8c",
+        "android_client_info": {
+          "package_name": "com.example.android.u_rait"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1038868081393-1jgtrj2p9f9b9ispuvovg4gd2adguru5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD73RXUs3ODdSaX6Ck7XT7NgOO9g2z3yMk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
