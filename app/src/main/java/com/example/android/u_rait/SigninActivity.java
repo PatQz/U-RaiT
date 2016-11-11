@@ -98,7 +98,7 @@ public class SigninActivity extends AppCompatActivity implements View.OnClickLis
                             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                         }else{
                             //display some message here
-                            Toast.makeText(Signin.this,"Registration Error",Toast.LENGTH_LONG).show();
+                            Toast.makeText(SigninActivity.this,"Registration Error",Toast.LENGTH_LONG).show();
                         }
                         progressDialog.dismiss();
                     }
