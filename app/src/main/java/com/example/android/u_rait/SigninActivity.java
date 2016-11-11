@@ -22,9 +22,8 @@ public class SigninActivity extends AppCompatActivity implements View.OnClickLis
     //defining view objects
     private EditText editTextEmail;
     private EditText editTextPassword;
-    private Button buttonSignup;
-
-    private TextView textViewSignin;
+    private Button buttonSignin;
+    private TextView textViewSignup;
 
     private ProgressDialog progressDialog;
 
@@ -53,15 +52,13 @@ public class SigninActivity extends AppCompatActivity implements View.OnClickLis
         //initializing views
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        textViewSignin = (TextView) findViewById(R.id.textViewSignin);
-
-        buttonSignup = (Button) findViewById(R.id.buttonSignup);
+        textViewSignup = (TextView) findViewById(R.id.textViewSignUp);
+        buttonSignin = (Button) findViewById(R.id.buttonSignin);
 
         progressDialog = new ProgressDialog(this);
-
         //attaching listener to button
-        buttonSignup.setOnClickListener(this);
-        textViewSignin.setOnClickListener(this);
+        buttonSignin.setOnClickListener(this);
+        textViewSignup.setOnClickListener(this);
     }
 
     private void registerUser(){
@@ -72,19 +69,19 @@ public class SigninActivity extends AppCompatActivity implements View.OnClickLis
 
         //checking if email and passwords are empty
         if(TextUtils.isEmpty(email)){
-            Toast.makeText(this,"Please enter email",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Por favor, llene el campo de email",Toast.LENGTH_LONG).show();
             return;
         }
 
         if(TextUtils.isEmpty(password)){
-            Toast.makeText(this,"Please enter password",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Por favor, llene el campo de password",Toast.LENGTH_LONG).show();
             return;
         }
 
         //if the email and password are not empty
         //displaying a progress dialog
 
-        progressDialog.setMessage("Registering Please Wait...");
+        progressDialog.setMessage("Registrando...");
         progressDialog.show();
 
         //creating a new user
@@ -98,7 +95,7 @@ public class SigninActivity extends AppCompatActivity implements View.OnClickLis
                             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                         }else{
                             //display some message here
-                            Toast.makeText(SigninActivity.this,"Registration Error",Toast.LENGTH_LONG).show();
+                            Toast.makeText(SigninActivity.this,"Error al registrar",Toast.LENGTH_LONG).show();
                         }
                         progressDialog.dismiss();
                     }
@@ -109,12 +106,11 @@ public class SigninActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
 
-        if(view == buttonSignup){
+        if(view == buttonSignin){
             registerUser();
-        }
-
-        if(view == textViewSignin){
+        }else if(view == textViewSignup){
             //open login activity when user taps on the already registered textview
+            finish();
             startActivity(new Intent(this, LoginActivity.class));
         }
 

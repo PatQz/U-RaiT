@@ -13,6 +13,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import static android.R.attr.key;
+
+
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
     //firebase auth object
@@ -26,7 +32,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private DatabaseReference databaseReference;
 
     //our new views
-    private EditText editTextName, editTextAddress;
+    private EditText editTextName, editTextCarrera;
     private Button buttonSave;
 
     @Override
@@ -53,7 +59,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
         //getting the views from xml resource
-        editTextAddress = (EditText) findViewById(R.id.editTextAddress);
+        editTextCarrera = (EditText) findViewById(R.id.editTextCarrera);
         editTextName = (EditText) findViewById(R.id.editTextName);
         buttonSave = (Button) findViewById(R.id.buttonSave);
 
@@ -62,7 +68,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         buttonLogout = (Button) findViewById(R.id.buttonLogout);
 
         //displaying logged in user name
-        textViewUserEmail.setText("Welcome "+user.getEmail());
+        textViewUserEmail.setText("Bienvenido "+user.getEmail());
 
         //adding listener to button
         buttonLogout.setOnClickListener(this);
@@ -88,14 +94,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     private void saveUserInformation() {
         //Getting values from database
+
         String name = editTextName.getText().toString().trim();
-        String add = editTextAddress.getText().toString().trim();
-
-        //creating a userinformation object
-        UserInformation userInformation = new UserInformation(name, add);
-
-        //getting the current logged in user
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+        String carrera = editTextCarrera.getText().toString().trim();
 
         //saving data to firebase database
         /*
@@ -104,9 +105,19 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         * and then for that user under the unique id we are saving data
         * for saving data we are using setvalue method this method takes a normal java object
         * */
-        databaseReference.child(user.getUid()).setValue(userInformation);
+      //  String key = databaseReference.child("usuarios").push().getKey();
+        //creating a userinformation object
+        UserInformation userInformation = new UserInformation(name, carrera);
+        //getting the current logged in user
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        Map<String, Object> postValues = userInformation.toMap();
+        Map<String, Object> childUpdates = new HashMap<>();
+        // guardas la informacion del usuario en la ruta
+        childUpdates.put("/usuarios/"+user.getUid()+"/", postValues);
+        // actualizas
+        databaseReference.updateChildren(childUpdates);
 
+        Toast.makeText(this, "Informacion salvada...", Toast.LENGTH_LONG).show();
         //displaying a success toast
-        Toast.makeText(this, "Information Saved...", Toast.LENGTH_LONG).show();
     }
 }
