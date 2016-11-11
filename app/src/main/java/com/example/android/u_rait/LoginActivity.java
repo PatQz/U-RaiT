@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -44,7 +45,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         //if the objects getcurrentuser method is not null
         //means user is already logged in
-        if(firebaseAuth.getCurrentUser() != null){
+        if(firebaseAuth.getCurrentUser() != null && firebaseAuth.getCurrentUser().isEmailVerified() ){
             //close this activity
             finish();
             //opening profile activity
@@ -94,10 +95,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
                         //if the task is successfull
-                        if(task.isSuccessful()){
+                        FirebaseUser user = firebaseAuth.getCurrentUser();
+                        if(task.isSuccessful() && user.isEmailVerified() ){
                             //start the profile activity
                             finish();
                             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                        }else if( !user.isEmailVerified()){
+                            Toast.makeText(LoginActivity.this,"Verifica tu correo",Toast.LENGTH_LONG).show();
                         }
                     }
                 });

@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SigninActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -38,16 +39,6 @@ public class SigninActivity extends AppCompatActivity implements View.OnClickLis
 
         //initializing firebase auth object
         firebaseAuth = FirebaseAuth.getInstance();
-
-        //if getCurrentUser does not returns null
-        if(firebaseAuth.getCurrentUser() != null){
-            //that means user is already logged in
-            //so close this activity
-            finish();
-
-            //and open profile activity
-            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-        }
 
         //initializing views
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
@@ -91,8 +82,11 @@ public class SigninActivity extends AppCompatActivity implements View.OnClickLis
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         //checking if success
                         if(task.isSuccessful()){
+                            FirebaseUser user = firebaseAuth.getCurrentUser();
+                            user.sendEmailVerification();
+                            Toast.makeText(SigninActivity.this,"Para completar el registro, verifica tu correo",Toast.LENGTH_LONG).show();
                             finish();
-                            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                         }else{
                             //display some message here
                             Toast.makeText(SigninActivity.this,"Error al registrar",Toast.LENGTH_LONG).show();

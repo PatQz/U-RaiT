@@ -32,7 +32,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private DatabaseReference databaseReference;
 
     //our new views
-    private EditText editTextName, editTextCarrera;
+    private EditText editTextName, editTextCarrera, editTextEdad;
     private Button buttonSave;
 
     @Override
@@ -61,6 +61,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         //getting the views from xml resource
         editTextCarrera = (EditText) findViewById(R.id.editTextCarrera);
         editTextName = (EditText) findViewById(R.id.editTextName);
+        editTextEdad = (EditText) findViewById(R.id.editTextEdad);
         buttonSave = (Button) findViewById(R.id.buttonSave);
 
         //initializing views
@@ -97,7 +98,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         String name = editTextName.getText().toString().trim();
         String carrera = editTextCarrera.getText().toString().trim();
-
+        int edad = Integer.parseInt(editTextEdad.getText().toString().trim());
         //saving data to firebase database
         /*
         * first we are creating a new child in firebase with the
@@ -107,7 +108,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         * */
       //  String key = databaseReference.child("usuarios").push().getKey();
         //creating a userinformation object
-        UserInformation userInformation = new UserInformation(name, carrera);
+        UserInformation userInformation = new UserInformation(name,edad,carrera);
         //getting the current logged in user
         FirebaseUser user = firebaseAuth.getCurrentUser();
         Map<String, Object> postValues = userInformation.toMap();
