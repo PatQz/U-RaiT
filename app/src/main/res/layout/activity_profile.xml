@@ -33,6 +33,12 @@
             android:layout_height="wrap_content"
             android:hint="Nombre completo" />
 
+        <EditText
+            android:layout_marginTop="15dp"
+            android:id="@+id/editTextEdad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Edad" />
 
         <EditText
             android:layout_marginTop="15dp"
