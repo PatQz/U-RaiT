@@ -2,6 +2,10 @@ package com.example.android.u_rait;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,8 +14,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,10 +30,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     //firebase auth object
     private FirebaseAuth firebaseAuth;
-
+    private FirebaseUser user;
     //view objects
     private TextView textViewUserEmail;
-    private Button buttonLogout;
 
     //defining a database reference
     private DatabaseReference databaseReference;
@@ -51,42 +57,83 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             //starting login activity
             startActivity(new Intent(this, LoginActivity.class));
         }
-
         //getting current user
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-
+        user = firebaseAuth.getCurrentUser();
         //getting the database reference
         databaseReference = FirebaseDatabase.getInstance().getReference();
-
         //getting the views from xml resource
         editTextCarrera = (EditText) findViewById(R.id.editTextCarrera);
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextEdad = (EditText) findViewById(R.id.editTextEdad);
         buttonSave = (Button) findViewById(R.id.buttonSave);
-
         //initializing views
         textViewUserEmail = (TextView) findViewById(R.id.textViewUserEmail);
-        buttonLogout = (Button) findViewById(R.id.buttonLogout);
-
         //displaying logged in user name
         textViewUserEmail.setText("Bienvenido "+user.getEmail());
-
         //adding listener to button
-        buttonLogout.setOnClickListener(this);
         buttonSave.setOnClickListener(this);
+        this.cargarDatos();
+    }
+
+    private void cargarDatos(){
+        DatabaseReference datosUsuario;
+        datosUsuario = FirebaseDatabase.getInstance().getReference().child("usuarios").child(user.getUid());
+
+        if(datosUsuario != null) {
+            datosUsuario.addListenerForSingleValueEvent(
+                    new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            // actualizar datos
+
+                            if (dataSnapshot.child("nombre").getValue() != null) {
+                                textViewUserEmail.setText("Bienvenido " + dataSnapshot.child("nombre").getValue().toString());
+                                editTextName.setHint(dataSnapshot.child("nombre").getValue().toString());
+                                editTextEdad.setHint(dataSnapshot.child("edad").getValue().toString());
+                                editTextCarrera.setHint(dataSnapshot.child("carrera").getValue().toString());
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+        }
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_urait, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.mi_perfil:
+                //start the profile activity
+                finish();
+                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                return true;
+            case R.id.cerrar_sesion:
+                //logging out the user
+                firebaseAuth.signOut();
+                //closing activity
+                finish();
+                //starting login activity
+                startActivity(new Intent(this, LoginActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
     public void onClick(View view) {
-        //if logout is pressed
-        if(view == buttonLogout){
-            //logging out the user
-            firebaseAuth.signOut();
-            //closing activity
-            finish();
-            //starting login activity
-            startActivity(new Intent(this, LoginActivity.class));
-        }
 
         if(view == buttonSave){
             saveUserInformation();
@@ -110,7 +157,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         //creating a userinformation object
         UserInformation userInformation = new UserInformation(name,edad,carrera);
         //getting the current logged in user
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+        user = firebaseAuth.getCurrentUser();
         Map<String, Object> postValues = userInformation.toMap();
         Map<String, Object> childUpdates = new HashMap<>();
         // guardas la informacion del usuario en la ruta
