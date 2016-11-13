@@ -53,7 +53,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         //that means current user will return null
         if(firebaseAuth.getCurrentUser() == null){
             //closing this activity
-            finish();
+            //finish();
             //starting login activity
             startActivity(new Intent(this, LoginActivity.class));
         }

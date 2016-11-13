@@ -44,7 +44,7 @@ public class MapaActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.mi_perfil:
                 //start the profile activity
-                finish();
+                //finish();
                 startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                 return true;
             case R.id.cerrar_sesion:
