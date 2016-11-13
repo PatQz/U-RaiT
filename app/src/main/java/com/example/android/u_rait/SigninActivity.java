@@ -2,9 +2,9 @@ package com.example.android.u_rait;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -17,9 +17,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class SigninActivity extends AppCompatActivity implements View.OnClickListener {
@@ -66,15 +63,16 @@ public class SigninActivity extends AppCompatActivity implements View.OnClickLis
         if(TextUtils.isEmpty(email)){
             Toast.makeText(this,"Por favor, llene el campo de email",Toast.LENGTH_LONG).show();
             return;
-        }//else{
-        //    if( !(isEmailValid(email) )){
-        //        Toast.makeText(this,"Email no valido! Ejemplo: a212206115@alumnos.uson.mx o a212206115@alumnos.unison.mx",Toast.LENGTH_LONG).show();
-        //        return;
-        //    }
-        //}
+        }
 
         if(TextUtils.isEmpty(password)){
             Toast.makeText(this,"Por favor, llene el campo de password",Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        //checking if email is valid
+        if(!isEmailValid(email)){
+            Toast.makeText(this,"Por favor, ingrese un correo perteneciente a la Universidad de Sonora",Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -92,7 +90,7 @@ public class SigninActivity extends AppCompatActivity implements View.OnClickLis
                         //checking if success
                         if(task.isSuccessful()){
                             FirebaseUser user = firebaseAuth.getCurrentUser();
-                            user.sendEmailVerification();
+                            if(user!=null) user.sendEmailVerification();
                             Toast.makeText(SigninActivity.this,"Para completar el registro, verifica tu correo",Toast.LENGTH_LONG).show();
                             finish();
                             startActivity(new Intent(getApplicationContext(), LoginActivity.class));
@@ -120,16 +118,15 @@ public class SigninActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     public static boolean isEmailValid(String email) {
-        boolean isValid = false;
+        String expressionAlumnos = "^a[0-9.%+-]{9,9}@alumnos\\.((uson)|(unison))\\.mx$";
+        String expressionMestros = "^[A-Za-z0-9+_.-]+@[a-z\\.]+\\.((uson)|(unison)) \\.mx$";
 
-        String expression = "^a[0-9.%+-]{9,9}@alumnos\\.((uson)|(unison))\\.mx$";
-        CharSequence inputStr = email;
-
-        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(inputStr);
-        if (matcher.matches()) {
-            isValid = true;
+        if(email.matches(expressionAlumnos)){
+            return true;
+        }else if(email.matches(expressionMestros)){
+            return true;
         }
-        return isValid;
+
+        return false;
     }
 }

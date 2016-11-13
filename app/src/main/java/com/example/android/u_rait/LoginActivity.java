@@ -3,9 +3,9 @@ package com.example.android.u_rait;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -18,12 +18,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static com.example.android.u_rait.R.id.textView;
-import static com.example.android.u_rait.R.id.textViewOlvidar;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -85,14 +79,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(TextUtils.isEmpty(email)){
             Toast.makeText(this,"Por favor, llene el campo de email",Toast.LENGTH_LONG).show();
             return;
-        }//else{
-      //      if( !(isEmailValid(email) )){
-       //         Toast.makeText(this,"Email no valido! Ejemplo: a212206115@alumnos.uson.mx o a212206115@alumnos.unison.mx",Toast.LENGTH_LONG).show();
-       //         return;
-        //    }
-       // }
+        }
+
         if(TextUtils.isEmpty(password)){
             Toast.makeText(this,"Por favor, llene el campo de password",Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        //checking if email is valid
+        if(!isEmailValid(email)){
+            Toast.makeText(this,"Por favor, ingrese un correo perteneciente a la Universidad de Sonora",Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -110,7 +106,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         progressDialog.dismiss();
                         //if the task is successfull
                         FirebaseUser user = firebaseAuth.getCurrentUser();
-                        if(task.isSuccessful() && user.isEmailVerified() ){
+                        if(task.isSuccessful()){
                             //start the profile activity
                             finish();
                             startActivity(new Intent(getApplicationContext(), MapaActivity.class));
@@ -143,17 +139,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public static boolean isEmailValid(String email) {
-        boolean isValid = false;
+        String expressionAlumnos = "^a[0-9.%+-]{9,9}@alumnos\\.((uson)|(unison))\\.mx$";
+        String expressionMestros = "^[A-Za-z0-9+_.-]+@[a-z\\.]+\\.((uson)|(unison)) \\.mx$";
 
-        String expression = "^a[0-9.%+-]{9,9}@alumnos\\.((uson)|(unison))\\.mx$";
-        CharSequence inputStr = email;
-
-        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(inputStr);
-        if (matcher.matches()) {
-            isValid = true;
+        if(email.matches(expressionAlumnos)){
+            return true;
+        }else if(email.matches(expressionMestros)){
+            return true;
         }
-        return isValid;
+
+        return false;
     }
 
 }
