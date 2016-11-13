@@ -140,7 +140,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public static boolean isEmailValid(String email) {
         String expressionAlumnos = "^a[0-9.%+-]{9,9}@alumnos\\.((uson)|(unison))\\.mx$";
-        String expressionMestros = "^[A-Za-z0-9+_.-]+@[a-z\\.]+\\.((uson)|(unison)) \\.mx$";
+        String expressionMestros = "^[A-Za-z0-9+_.-]+@[a-z.-]+((uson)|(unison))\\.mx$";
 
         if(email.matches(expressionAlumnos)){
             return true;
