@@ -30,11 +30,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="50dp"
+            android:textColorHighlight="#0B3B2E"
             android:layout_marginRight="50dp"
             android:hint="email"
             android:inputType="textEmailAddress" />
 
         <EditText
+            android:textColorHighlight="#0B3B2E"
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -17,7 +17,9 @@
         </activity>
         <activity android:name=".SigninActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".MapaActivity"></activity>
+        <activity android:name=".MapaActivity" />
+        <activity android:name=".ReenvioActivity" />
+        <activity android:name=".OlvidarContrasenaActivity"></activity>
     </application>
 
 </manifest>

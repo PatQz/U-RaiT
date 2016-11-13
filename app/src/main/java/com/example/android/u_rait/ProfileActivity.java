@@ -88,9 +88,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
                             if (dataSnapshot.child("nombre").getValue() != null) {
                                 textViewUserEmail.setText("Bienvenido " + dataSnapshot.child("nombre").getValue().toString());
-                                editTextName.setHint(dataSnapshot.child("nombre").getValue().toString());
-                                editTextEdad.setHint(dataSnapshot.child("edad").getValue().toString());
-                                editTextCarrera.setHint(dataSnapshot.child("carrera").getValue().toString());
+                                editTextName.setText(dataSnapshot.child("nombre").getValue().toString());
+                                editTextEdad.setText(dataSnapshot.child("edad").getValue().toString());
+                                editTextCarrera.setText(dataSnapshot.child("carrera").getValue().toString());
                             }
                         }
 
