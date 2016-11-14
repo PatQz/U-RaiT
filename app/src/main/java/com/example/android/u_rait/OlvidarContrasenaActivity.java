@@ -25,7 +25,7 @@ public class OlvidarContrasenaActivity extends AppCompatActivity implements View
     //defining views
     private Button buttonReenvio;
     private EditText editTextEmail;
-    private TextView textViewOlvidar;
+    private TextView textViewSignUp;
 
     //firebase auth object
     private FirebaseAuth firebaseAuth;
@@ -44,12 +44,12 @@ public class OlvidarContrasenaActivity extends AppCompatActivity implements View
         //initializing views
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         buttonReenvio = (Button) findViewById(R.id.ReenvioButton);
-        textViewOlvidar = (TextView) findViewById(R.id.textViewOlvidar);
+        textViewSignUp = (TextView) findViewById(R.id.textViewSignUp);
         progressDialog = new ProgressDialog(this);
 
         //attaching click listener
         buttonReenvio.setOnClickListener(this);
-        textViewOlvidar.setOnClickListener(this);
+        textViewSignUp.setOnClickListener(this);
     }
 
 
@@ -96,7 +96,7 @@ public class OlvidarContrasenaActivity extends AppCompatActivity implements View
         // boton de inicio de sesion
         if(view == buttonReenvio){
             reenvio();
-        }else if(view == textViewOlvidar){
+        }else if(view == textViewSignUp){
             finish();
             startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         }

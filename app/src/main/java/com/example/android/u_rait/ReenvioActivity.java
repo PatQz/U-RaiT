@@ -104,7 +104,6 @@ public class ReenvioActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View view) {
         // boton de inicio de sesion
         if(view == buttonReenvio){
-            //userLogin();
             reenvio();
         }else if(view == textViewSignUp){
             finish();

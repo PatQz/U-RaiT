@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private TextView textViewSignIn;
     private EditText editTextEmail;
     private EditText editTextPassword;
-    private TextView textViewReenvio;
+    private TextView textViewOlvidar;
 
 
     //firebase auth object
@@ -57,13 +57,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         buttonSignUp = (Button) findViewById(R.id.LoginButton);
-            textViewSignIn  = (TextView) findViewById(R.id.SigninTextView);
-        textViewReenvio = (TextView) findViewById(R.id.textViewReEnvio);
+        textViewSignIn  = (TextView) findViewById(R.id.SigninTextView);
+        textViewOlvidar = (TextView) findViewById(R.id.textViewOlvidar);
         progressDialog = new ProgressDialog(this);
         //attaching click listener
         textViewSignIn.setOnClickListener(this);
         buttonSignUp.setOnClickListener(this);
-        textViewReenvio.setOnClickListener(this);
+        textViewOlvidar.setOnClickListener(this);
 
     }
 
@@ -128,7 +128,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }else if(view == textViewSignIn){
             finish();
             startActivity(new Intent(this, SigninActivity.class));
-        }else if(view == textViewReenvio){
+        }else if(view == textViewOlvidar){
             finish();
             startActivity(new Intent(this, ReenvioActivity.class));
         }

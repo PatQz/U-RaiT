@@ -26,7 +26,7 @@ public class SigninActivity extends AppCompatActivity implements View.OnClickLis
     private EditText editTextPassword;
     private Button buttonSignin;
     private TextView textViewSignup;
-    private TextView textViewOlvidar;
+    private TextView textViewReenviar;
 
     private ProgressDialog progressDialog;
 
@@ -47,12 +47,12 @@ public class SigninActivity extends AppCompatActivity implements View.OnClickLis
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         textViewSignup = (TextView) findViewById(R.id.textViewSignUp);
         buttonSignin = (Button) findViewById(R.id.buttonSignin);
-        textViewOlvidar = (TextView) findViewById(R.id.textViewOlvidar);
+        textViewReenviar = (TextView) findViewById(R.id.textViewReEnvio);
         progressDialog = new ProgressDialog(this);
         //attaching listener to button
         buttonSignin.setOnClickListener(this);
         textViewSignup.setOnClickListener(this);
-        textViewOlvidar.setOnClickListener(this);
+        textViewReenviar.setOnClickListener(this);
     }
 
     private void registerUser(){
@@ -116,7 +116,7 @@ public class SigninActivity extends AppCompatActivity implements View.OnClickLis
             //open login activity when user taps on the already registered textview
             finish();
             startActivity(new Intent(this, LoginActivity.class));
-        }else if(view == textViewOlvidar){
+        }else if(view == textViewReenviar){
             finish();
             startActivity(new Intent(this, OlvidarContrasenaActivity.class));
         }
