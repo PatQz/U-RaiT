@@ -6,24 +6,29 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-public class MapaActivity extends AppCompatActivity {
 
+public class EleccionActivity extends AppCompatActivity implements View.OnClickListener{
+
+    private Button crearViajeButton;
+    private Button buscarViajeButton;
     private FirebaseAuth firebaseAuth;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mapa);
-
+        setContentView(R.layout.activity_eleccion);
         //initializing firebase authentication object
         firebaseAuth = FirebaseAuth.getInstance();
+        crearViajeButton = (Button) findViewById(R.id.CrearViajeButton);
+        buscarViajeButton = (Button) findViewById(R.id.BuscarViajeButton);
 
+        crearViajeButton.setOnClickListener(this);
+        buscarViajeButton.setOnClickListener(this);
     }
 
     @Override
@@ -39,7 +44,6 @@ public class MapaActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.mi_perfil:
                 //start the profile activity
-                //finish();
                 startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                 return true;
             case R.id.cerrar_sesion:
@@ -55,4 +59,12 @@ public class MapaActivity extends AppCompatActivity {
         }
     }
 
+    public void onClick(View view) {
+        // boton de inicio de sesion
+        if(view == crearViajeButton){
+            startActivity(new Intent(this, MapaActivity.class));
+        }else if(view == buscarViajeButton){
+            startActivity(new Intent(this, MapaActivity.class));
+        }
+    }
 }

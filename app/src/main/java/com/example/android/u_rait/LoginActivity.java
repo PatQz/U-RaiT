@@ -28,13 +28,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText editTextPassword;
     private TextView textViewOlvidar;
 
-
     //firebase auth object
     private FirebaseAuth firebaseAuth;
 
     //progress dialog
     private ProgressDialog progressDialog;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,7 +106,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         if(task.isSuccessful()){
                             //start the profile activity
                             finish();
-                            startActivity(new Intent(getApplicationContext(), MapaActivity.class));
+                            startActivity(new Intent(getApplicationContext(), EleccionActivity.class));
                         }else if(!task.isSuccessful()){
                             Toast.makeText(LoginActivity.this,"estas registrado?",Toast.LENGTH_LONG).show();
                         }else{
