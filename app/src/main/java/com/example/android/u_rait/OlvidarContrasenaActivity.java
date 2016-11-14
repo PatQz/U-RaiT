@@ -24,7 +24,6 @@ public class OlvidarContrasenaActivity extends AppCompatActivity implements View
     //defining views
     private Button buttonReenvio;
     private EditText editTextEmail;
-    private EditText editTextPassword;
 
     //firebase auth object
     private FirebaseAuth firebaseAuth;
@@ -42,7 +41,6 @@ public class OlvidarContrasenaActivity extends AppCompatActivity implements View
 
         //initializing views
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
-        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         buttonReenvio = (Button) findViewById(R.id.ReenvioButton);
         progressDialog = new ProgressDialog(this);
 
@@ -54,8 +52,7 @@ public class OlvidarContrasenaActivity extends AppCompatActivity implements View
     //method for user login
     private void reenvio(){
         final String email = editTextEmail.getText().toString().trim();
-        String password  = editTextPassword.getText().toString().trim();
-
+        final String password = "password";
         //checking if email and passwords are empty
         if(TextUtils.isEmpty(email)){
             Toast.makeText(this,"Por favor, llene el campo de email",Toast.LENGTH_LONG).show();
@@ -66,10 +63,6 @@ public class OlvidarContrasenaActivity extends AppCompatActivity implements View
         //        return;
         //    }
        // }
-        if(TextUtils.isEmpty(password)){
-            Toast.makeText(this,"Por favor, llene el campo de password",Toast.LENGTH_LONG).show();
-            return;
-        }
 
         //if the email and password are not empty
         //displaying a progress dialog
@@ -103,16 +96,15 @@ public class OlvidarContrasenaActivity extends AppCompatActivity implements View
     }
 
     public static boolean isEmailValid(String email) {
-        boolean isValid = false;
+        String expressionAlumnos = "^a[0-9.%+-]{9,9}@alumnos\\.((uson)|(unison))\\.mx$";
+        String expressionMestros = "^[A-Za-z0-9+_.-]+@[a-z.-]+((uson)|(unison))\\.mx$";
 
-        String expression = "^a[0-9.%+-]{9,9}@alumnos\\.((uson)|(unison))\\.mx$";
-        CharSequence inputStr = email;
-
-        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(inputStr);
-        if (matcher.matches()) {
-            isValid = true;
+        if(email.matches(expressionAlumnos)){
+            return true;
+        }else if(email.matches(expressionMestros)){
+            return true;
         }
-        return isValid;
+
+        return false;
     }
 }

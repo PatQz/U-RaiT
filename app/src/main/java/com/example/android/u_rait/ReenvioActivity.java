@@ -106,16 +106,15 @@ public class ReenvioActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     public static boolean isEmailValid(String email) {
-        boolean isValid = false;
+        String expressionAlumnos = "^a[0-9.%+-]{9,9}@alumnos\\.((uson)|(unison))\\.mx$";
+        String expressionMestros = "^[A-Za-z0-9+_.-]+@[a-z.-]+((uson)|(unison))\\.mx$";
 
-        String expression = "^a[0-9.%+-]{9,9}@alumnos\\.((uson)|(unison))\\.mx$";
-        CharSequence inputStr = email;
-
-        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(inputStr);
-        if (matcher.matches()) {
-            isValid = true;
+        if(email.matches(expressionAlumnos)){
+            return true;
+        }else if(email.matches(expressionMestros)){
+            return true;
         }
-        return isValid;
+
+        return false;
     }
 }

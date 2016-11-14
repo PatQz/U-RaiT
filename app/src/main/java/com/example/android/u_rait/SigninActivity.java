@@ -63,18 +63,19 @@ public class SigninActivity extends AppCompatActivity implements View.OnClickLis
         if(TextUtils.isEmpty(email)){
             Toast.makeText(this,"Por favor, llene el campo de email",Toast.LENGTH_LONG).show();
             return;
-        }
+        }//else{
+            //checking if email is valid
+           // if(!isEmailValid(email)){
+            //    Toast.makeText(this,"Por favor, ingrese un correo perteneciente a la Universidad de Sonora",Toast.LENGTH_LONG).show();
+            //    return;
+           // }
+        //}
 
         if(TextUtils.isEmpty(password)){
             Toast.makeText(this,"Por favor, llene el campo de password",Toast.LENGTH_LONG).show();
             return;
         }
 
-        //checking if email is valid
-        if(!isEmailValid(email)){
-            Toast.makeText(this,"Por favor, ingrese un correo perteneciente a la Universidad de Sonora",Toast.LENGTH_LONG).show();
-            return;
-        }
 
         //if the email and password are not empty
         //displaying a progress dialog
