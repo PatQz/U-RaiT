@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,6 +25,7 @@ public class OlvidarContrasenaActivity extends AppCompatActivity implements View
     //defining views
     private Button buttonReenvio;
     private EditText editTextEmail;
+    private TextView textViewOlvidar;
 
     //firebase auth object
     private FirebaseAuth firebaseAuth;
@@ -42,10 +44,12 @@ public class OlvidarContrasenaActivity extends AppCompatActivity implements View
         //initializing views
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         buttonReenvio = (Button) findViewById(R.id.ReenvioButton);
+        textViewOlvidar = (TextView) findViewById(R.id.textViewOlvidar);
         progressDialog = new ProgressDialog(this);
 
         //attaching click listener
         buttonReenvio.setOnClickListener(this);
+        textViewOlvidar.setOnClickListener(this);
     }
 
 
@@ -92,6 +96,9 @@ public class OlvidarContrasenaActivity extends AppCompatActivity implements View
         // boton de inicio de sesion
         if(view == buttonReenvio){
             reenvio();
+        }else if(view == textViewOlvidar){
+            finish();
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         }
     }
 

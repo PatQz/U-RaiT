@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,6 +27,7 @@ public class ReenvioActivity extends AppCompatActivity implements View.OnClickLi
     private Button buttonReenvio;
     private EditText editTextEmail;
     private EditText editTextPassword;
+    private TextView textViewSignUp;
 
     //firebase auth object
     private FirebaseAuth firebaseAuth;
@@ -45,10 +47,12 @@ public class ReenvioActivity extends AppCompatActivity implements View.OnClickLi
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         buttonReenvio = (Button) findViewById(R.id.ReenvioButton);
+        textViewSignUp = (TextView) findViewById(R.id.textViewSignUp);
         progressDialog = new ProgressDialog(this);
 
         //attaching click listener
         buttonReenvio.setOnClickListener(this);
+        textViewSignUp.setOnClickListener(this);
     }
 
 
@@ -102,6 +106,9 @@ public class ReenvioActivity extends AppCompatActivity implements View.OnClickLi
         if(view == buttonReenvio){
             //userLogin();
             reenvio();
+        }else if(view == textViewSignUp){
+            finish();
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         }
     }
 
