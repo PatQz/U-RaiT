@@ -20,7 +20,7 @@
         <activity android:name=".MapaActivity" />
         <activity android:name=".ReenvioActivity" />
         <activity android:name=".OlvidarContrasenaActivity" />
-        <activity android:name=".EleccionActivity"></activity>
+        <activity android:name=".OfrecerViajeActivity"></activity>
     </application>
 
 </manifest>
