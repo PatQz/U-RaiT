@@ -75,11 +75,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Toast.makeText(this,"Por favor, llene el campo de email",Toast.LENGTH_LONG).show();
             return;
         }//else{
-            //checking if email is valid
-         //   if(!isEmailValid(email)){
-         //       Toast.makeText(this,"Por favor, ingrese un correo perteneciente a la Universidad de Sonora",Toast.LENGTH_LONG).show();
-         //       return;
-         //   }
+        //checking if email is valid
+        //   if(!isEmailValid(email)){
+        //       Toast.makeText(this,"Por favor, ingrese un correo perteneciente a la Universidad de Sonora",Toast.LENGTH_LONG).show();
+        //       return;
+        //   }
         //}
 
         if(TextUtils.isEmpty(password)){
