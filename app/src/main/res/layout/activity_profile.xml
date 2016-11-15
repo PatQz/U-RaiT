@@ -13,10 +13,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:orientation="vertical">
-
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
 
         <TextView
             android:id="@+id/textViewUserEmail"
@@ -26,35 +25,65 @@
             android:text="Informacion"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/textViewNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre:"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"/>
+
         <EditText
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:id="@+id/editTextName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nombre completo" />
 
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/textViewEdad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edad:"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"/>
+
         <EditText
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:id="@+id/editTextEdad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Edad" />
 
-        <EditText
-            android:layout_marginTop="15dp"
-            android:id="@+id/editTextCarrera"
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/textViewCarrera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Carrera:"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"/>
+
+        <Spinner
+            android:layout_marginTop="10dp"
+            android:id="@+id/carreras"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Carrera" />
+            android:entries="@array/carreras_arrays"
+            ></Spinner>
 
         <Button
+            android:layout_marginTop="10dp"
             android:background="#6A939E"
             android:id="@+id/buttonSave"
-            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Guardar informacion" />
-
 
     </LinearLayout>
 

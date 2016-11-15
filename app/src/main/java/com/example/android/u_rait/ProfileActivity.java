@@ -2,13 +2,13 @@ package com.example.android.u_rait;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +23,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
-import static android.R.attr.key;
 
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
@@ -33,12 +32,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private FirebaseUser user;
     //view objects
     private TextView textViewUserEmail;
-
+    private Spinner carrerasSpinner;
     //defining a database reference
     private DatabaseReference databaseReference;
 
     //our new views
-    private EditText editTextName, editTextCarrera, editTextEdad;
+    private EditText editTextName, editTextEdad;
     private Button buttonSave;
 
     @Override
@@ -48,7 +47,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         //initializing firebase authentication object
         firebaseAuth = FirebaseAuth.getInstance();
-
         //if the user is not logged in
         //that means current user will return null
         if(firebaseAuth.getCurrentUser() == null){
@@ -62,10 +60,10 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         //getting the database reference
         databaseReference = FirebaseDatabase.getInstance().getReference();
         //getting the views from xml resource
-        editTextCarrera = (EditText) findViewById(R.id.editTextCarrera);
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextEdad = (EditText) findViewById(R.id.editTextEdad);
         buttonSave = (Button) findViewById(R.id.buttonSave);
+        carrerasSpinner = (Spinner) findViewById(R.id.carreras);
         //initializing views
         textViewUserEmail = (TextView) findViewById(R.id.textViewUserEmail);
         //displaying logged in user name
@@ -90,7 +88,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                                 textViewUserEmail.setText("Bienvenido " + dataSnapshot.child("nombre").getValue().toString());
                                 editTextName.setText(dataSnapshot.child("nombre").getValue().toString());
                                 editTextEdad.setText(dataSnapshot.child("edad").getValue().toString());
-                                editTextCarrera.setText(dataSnapshot.child("carrera").getValue().toString());
+                                carrerasSpinner.setSelection( Integer.parseInt(dataSnapshot.child("carreraId").getValue().toString() ));
                             }
                         }
 
@@ -144,8 +142,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         //Getting values from database
 
         String name = editTextName.getText().toString().trim();
-        String carrera = editTextCarrera.getText().toString().trim();
+        String carrera = carrerasSpinner.getSelectedItem().toString();
         int edad = Integer.parseInt(editTextEdad.getText().toString().trim());
+        int carreraId = carrerasSpinner.getSelectedItemPosition();
         //saving data to firebase database
         /*
         * first we are creating a new child in firebase with the
@@ -155,7 +154,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         * */
       //  String key = databaseReference.child("usuarios").push().getKey();
         //creating a userinformation object
-        UserInformation userInformation = new UserInformation(name,edad,carrera);
+        UserInformation userInformation = new UserInformation(name,edad,carrera,carreraId);
         //getting the current logged in user
         user = firebaseAuth.getCurrentUser();
         Map<String, Object> postValues = userInformation.toMap();

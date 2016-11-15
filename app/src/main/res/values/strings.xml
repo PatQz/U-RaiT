@@ -1,3 +1,52 @@
 <resources>
     <string name="app_name">U-RaiT</string>
+    <string-array name="carreras_arrays">
+        <item>Lic. en Ciencias de la Computación</item>
+        <item>Lic. en Matemáticas</item>
+        <item>Lic. en Física</item>
+        <item>Lic. en Geología</item>
+        <item>Ing. en Tecnología Electrónica</item>
+        <item>Ing. Civil</item>
+        <item>Ing. Mecatrónica</item>
+        <item>Ing. Minero</item>
+        <item>Ing. en Materiales</item>
+        <item>Ing. en Metalúrgica</item>
+        <item>Ing. Químico</item>
+        <item>Ing. Industrial y de Sistemas</item>
+        <item>Ing. en Sistemas de Información</item>
+        <item>Lic. en Derecho</item>
+        <item>Lic. en Sociología</item>
+        <item>Lic. en Administración Pública</item>
+        <item>Lic. en Historia</item>
+        <item>Lic. en Psicología</item>
+        <item>Lic. en Ciencias de la Comunicación</item>
+        <item>Lic. en Trabajo Social</item>
+        <item>Lic. en Contaduría Pública</item>
+        <item>Lic. en Administración</item>
+        <item>Lic. en Economía</item>
+        <item>Lic. en Finanzas</item>
+        <item>Lic. en Mercadotecnia</item>
+        <item>Lic. en Informática Administrativa</item>
+        <item>Lic. en Negocios y Comercio Internacionales</item>
+        <item>Lic. en Turismo</item>
+        <item>Químico Biólogo Clínico</item>
+        <item>Químico en Alimentos</item>
+        <item>Lic. en Cultura Física y Deporte</item>
+        <item>Lic. en Enfermería</item>
+        <item>Lic. en Medicina</item>
+        <item>Lic. en Biología</item>
+        <item>Lic. en Ciencias Nutricionales</item>
+        <item>Ing. Agrónomo</item>
+        <item>Lic. en Odontología</item>
+        <item>Licenciatura en Médico Veterinario Zootecnista</item>
+        <item>Lic. en Literaturas Hispánicas</item>
+        <item>Lic. en Lingüística</item>
+        <item>Lic. en Enseñanza del Inglés</item>
+        <item>Arquitectura</item>
+        <item>Lic. en Artes Escénicas esp. Actuación</item>
+        <item>Lic. en Artes Escénicas esp. Danza</item>
+        <item>Lic. en Artes Plásticas</item>
+        <item>Lic. en Música</item>
+        <item>Lic. en Diseño Gráfico</item>
+    </string-array>
 </resources>

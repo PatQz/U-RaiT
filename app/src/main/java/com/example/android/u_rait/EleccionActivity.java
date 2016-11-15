@@ -24,6 +24,12 @@ public class EleccionActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_eleccion);
         //initializing firebase authentication object
         firebaseAuth = FirebaseAuth.getInstance();
+        if(firebaseAuth.getCurrentUser() == null){
+            //closing this activity
+            //finish();
+            //starting login activity
+            startActivity(new Intent(this, LoginActivity.class));
+        }
         crearViajeButton = (Button) findViewById(R.id.CrearViajeButton);
         buscarViajeButton = (Button) findViewById(R.id.BuscarViajeButton);
 

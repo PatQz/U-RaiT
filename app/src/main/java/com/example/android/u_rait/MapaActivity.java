@@ -20,9 +20,14 @@ public class MapaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapa);
-
         //initializing firebase authentication object
         firebaseAuth = FirebaseAuth.getInstance();
+        if(firebaseAuth.getCurrentUser() == null){
+            //closing this activity
+            //finish();
+            //starting login activity
+            startActivity(new Intent(this, LoginActivity.class));
+        }
 
     }
 

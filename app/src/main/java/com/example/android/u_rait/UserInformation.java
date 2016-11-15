@@ -13,16 +13,18 @@ public class UserInformation {
 
     private String name;
     private String carrera;
+    private int carreraId;
     private int edad;
 
     public UserInformation(){
 
     }
 
-    public UserInformation(String name,int edad ,String carrera) {
+    public UserInformation(String name,int edad ,String carrera,int carreraId) {
         this.name = name;
         this.edad = edad;
         this.carrera = carrera;
+        this.carreraId = carreraId;
     }
 
     public Map<String, Object> toMap() {
@@ -30,6 +32,7 @@ public class UserInformation {
         result.put("edad", this.edad);
         result.put("nombre", this.name);
         result.put("carrera", this.carrera);
+        result.put("carreraId", this.carreraId);
 
         return result;
     }
