@@ -19,6 +19,7 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".MapaActivity" />
         <activity android:name=".ReenvioActivity" />
+        <activity android:name=".EleccionActivity" />
         <activity android:name=".OlvidarContrasenaActivity" />
         <activity android:name=".OfrecerViajeActivity"></activity>
     </application>
