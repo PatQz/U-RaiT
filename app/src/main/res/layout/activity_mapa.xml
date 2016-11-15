@@ -6,21 +6,4 @@
     android:layout_height="match_parent"
     android:background="#C5D1D6"
     tools:context="com.example.android.u_rait.MapaActivity">
-
-    <Button
-        android:id="@+id/ofrecerViaje"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ofrecer Viaje"
-        android:textSize="20sp"
-        android:layout_centerHorizontal="true"/>
-
-    <Button
-        android:id="@+id/buscarViaje"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ofrecerViaje"
-        android:text="Buscar Viaje"
-        android:textSize="20sp"/>
 </RelativeLayout>
