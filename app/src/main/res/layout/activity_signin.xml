@@ -49,20 +49,20 @@
             android:text="Registrar" />
 
         <TextView
-            android:text="Ya estas registrado?"
+            android:text="¿Ya estas registrado?"
             android:id="@+id/textViewSignUp"
             android:textAlignment="center"
             android:textSize="14sp"
-            android:layout_margin="15dp"
+            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <TextView
-            android:text="ReEnviar correo de confirmacion"
+            android:text="ReEnviar correo de confirmación"
             android:textSize="14sp"
             android:id="@+id/textViewReEnvio"
             android:textAlignment="center"
-            android:layout_margin="15dp"
+            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

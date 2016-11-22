@@ -1,8 +1,8 @@
 package com.example.android.u_rait;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,6 +17,8 @@ public class EleccionActivity extends AppCompatActivity implements View.OnClickL
     private Button crearViajeButton;
     private Button buscarViajeButton;
     private FirebaseAuth firebaseAuth;
+
+    MisViajesActivity mv=new MisViajesActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,13 @@ public class EleccionActivity extends AppCompatActivity implements View.OnClickL
                 //start the profile activity
                 startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                 return true;
+            case R.id.mis_viajes:
+                //if(MisViajesActivity.viajeActivoExists()) {
+                    startActivity(new Intent(getApplicationContext(),MisViajesActivity.class));
+                //}else{
+                  //  Toast.makeText(this,"No existen viajes activos",Toast.LENGTH_LONG).show();
+                //}
+                return true;
             case R.id.cerrar_sesion:
                 //logging out the user
                 firebaseAuth.signOut();
@@ -68,9 +77,9 @@ public class EleccionActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         // boton de inicio de sesion
         if(view == crearViajeButton){
-            startActivity(new Intent(this, MapaActivity.class));
+            startActivity(new Intent(this,OfrecerViajeActivity.class));
         }else if(view == buscarViajeButton){
-            startActivity(new Intent(this, MapaActivity.class));
+                startActivity(new Intent(this, BusquedaViajeActivity.class));
         }
     }
 }

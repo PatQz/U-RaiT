@@ -28,10 +28,11 @@
         android:layout_margin="20dp"/>
 
     <EditText
+        android:id="@+id/editTextRuta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/textView_ubicacion"
-        android:hint="Ubicación del carro"
+        android:hint="Ruta"
         android:layout_alignBaseline="@id/textView_ubicacion"/>
 
     <TextView
@@ -44,7 +45,7 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/textViewTime"
+        android:id="@+id/ButtonTime"
         android:layout_toRightOf="@id/textView_hora"
         android:layout_alignBaseline="@id/textView_hora"
         android:layout_width="wrap_content"
@@ -53,19 +54,32 @@
         android:textSize="18sp"/>
 
     <TextView
-        android:id="@+id/textView_ruta"
+        android:id="@+id/textView_pasajeros"
         android:layout_below="@id/textView_hora"
         android:layout_margin="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ruta: "
+        android:text="Número de pasajeros: "
         android:textSize="20sp"/>
 
+    <Spinner
+        android:id="@+id/SpinnerPasajeros"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/textView_pasajeros"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimaryDark"
+        android:layout_alignTop="@+id/textView_pasajeros">
+    </Spinner>
+
     <Button
+        android:id="@+id/ButtonAceptar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:text="Aceptar"
-        />
+        android:text="Aceptar" />
+
 </RelativeLayout>

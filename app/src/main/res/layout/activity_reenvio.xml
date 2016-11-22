@@ -48,7 +48,7 @@
             android:text="Reenvio"/>
 
         <TextView
-            android:text="Ya estas registrado?"
+            android:text="¿Ya estas registrado?"
             android:id="@+id/textViewSignUp"
             android:textAlignment="center"
             android:textSize="14sp"

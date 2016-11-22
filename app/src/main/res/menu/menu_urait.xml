@@ -5,6 +5,8 @@
 
     <item android:id="@+id/mi_perfil"
         android:title="Mi perfil"/>
+    <item android:id="@+id/mis_viajes"
+        android:title="Mis viajes"/>
     <item android:id="@+id/cerrar_sesion"
         android:title="Cerrar sesion" />
 
